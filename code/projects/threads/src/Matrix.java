@@ -63,9 +63,9 @@ void print() {
   * matrix product, you can print out a message and return a null matrix*/
 Matrix multiplyBy(Matrix m) {
   //Implementation here...
-  Matrix result = null; //You need to initialize the result Matrix properly
-  if(this.cols != m.rows) {
-	System.err.println("Matrix multiplication operation not possible" 
+	Matrix result = null; //You need to initialize the result Matrix properly
+	if(this.cols != m.rows) {
+	System.err.println("Matrix multiplication operation not possible"
 						+ "\n\tA*B must be A (n x m) & B (m x w)");
 	return result;
 }
@@ -73,7 +73,7 @@ Matrix multiplyBy(Matrix m) {
 	result = new Matrix(this.rows, m.cols); // generate n x w matrix
 
 	for(int i = 0; i < result.rows; i++) {
-		for(int j = 0; j < result.cols; j++) { 
+		for(int j = 0; j < result.cols; j++) {
 			double sum = 0;
 			for(int k = 0; k < this.cols; k++) {
 				sum += this.values[i][k] * m.values[k][j];
@@ -108,7 +108,7 @@ Matrix multiplyByThreads(Matrix m) throws InterruptedException {
 	int numThreads = result.cols;
 	Thread[] threads = new Thread[numThreads];
 
-  // Start threads using the helper class ColumnCalculator for rows of the 'A' & columns of the 'B' matrices - bulk of work
+  // Start threads using the helper class ColumnCalculator for rows of the 'A' & columns of the 'B' matrices
 	for(int i = 0; i < numThreads; i++) {
 		ColumnCalculator calc = new ColumnCalculator(this, m, result, i);
 		threads[i] = new Thread(calc);
@@ -133,42 +133,42 @@ public static void main(String[] args) {
   //Implementation here...
 	try {
 		// Test and verification of implementation with small matrices
-		 Matrix small1 = new Matrix(2, 2);
-		 Matrix small2 = new Matrix(2, 2);
-		 System.out.printf("Matrix A (%d x %d):\n", small1.rows, small1.cols);
-		 small1.print();
-		 System.out.printf("Matrix B (%d x %d):\n", small2.rows, small2.cols);
-		 small2.print();
-		 
-		 Matrix smallResult = small1.multiplyByThreads(small2);
-		 System.out.printf("Result A*B (%d x %d):\n", smallResult.rows, smallResult.cols);
-		 smallResult.print();
-		 
+		Matrix small1 = new Matrix(2, 2);
+		Matrix small2 = new Matrix(2, 2);
+		System.out.printf("Matrix A (%d x %d):\n", small1.rows, small1.cols);
+		small1.print();
+		System.out.printf("Matrix B (%d x %d):\n", small2.rows, small2.cols);
+		small2.print();
+
+		Matrix smallResult = small1.multiplyByThreads(small2);
+		System.out.printf("Result A*B (%d x %d):\n", smallResult.rows, smallResult.cols);
+		smallResult.print();
+
 		// Timed comparison between functions with large matrices
-		 Matrix big1 = new Matrix(3000, 1000);
-		 Matrix big2 = new Matrix(1000, 2000);
-		 
+		Matrix big1 = new Matrix(3000, 1000);
+		Matrix big2 = new Matrix(1000, 2000);
+
 		 // multiplyBy() call
-		 long start = System.nanoTime();
-		 big1.multiplyBy(big2);
-	     long end = System.nanoTime();
-	     double singleTime = (end - start) / 1000000000.;
+		long start = System.nanoTime();
+		big1.multiplyBy(big2);
+	    long end = System.nanoTime();
+	    double singleTime = (end - start) / 1000000000.;
 
 	     // multiplyByThreads() call
-	     start = System.nanoTime();
-		 big1.multiplyByThreads(big2);
-		 end = System.nanoTime();
-	     double threadedTime = (end - start) / 1000000000.;
-	     
+	    start = System.nanoTime();
+		big1.multiplyByThreads(big2);
+		end = System.nanoTime();
+	    double threadedTime = (end - start) / 1000000000.;
+
 	     // Display output
-	     System.out.println("\nPerformance Results:");
-	     System.out.printf("multiplyBy(): %.3f seconds%n", singleTime);
-	     System.out.printf("multiplyByThreads(): %.3f seconds%n", threadedTime);
+	    System.out.println("\nPerformance Results:");
+	    System.out.printf("multiplyBy(): %.3f seconds%n", singleTime);
+	    System.out.printf("multiplyByThreads(): %.3f seconds%n", threadedTime);
 
 		} catch (InterruptedException e) {
 			System.err.println("\n\tError: Threads have been interrupted... exiting program");
- 		} catch (NullPointerException e) {
- 			System.err.println("\n\tError: null Matrix");
+		} catch (NullPointerException e) {
+			System.err.println("\n\tError: null Matrix");
 	}
 }
 }
