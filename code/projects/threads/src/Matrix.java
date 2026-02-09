@@ -133,8 +133,10 @@ public static void main(String[] args) {
   //Implementation here...
 	try {
 		// Test and verification of implementation with small matrices
-		Matrix small1 = new Matrix(2, 2);
-		Matrix small2 = new Matrix(2, 2);
+		double[][] a = {{1, 2}, {2, 3}};
+		double[][] b = {{2, 3}, {3, 4}};
+		Matrix small1 = new Matrix(2, 2, a);
+		Matrix small2 = new Matrix(2, 2, b);
 		System.out.printf("Matrix A (%d x %d):\n", small1.rows, small1.cols);
 		small1.print();
 		System.out.printf("Matrix B (%d x %d):\n", small2.rows, small2.cols);

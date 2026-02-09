@@ -1,0 +1,23 @@
+Andrew Golias
+goliasa1
+CPS 356 - Operating Systems
+Dr. Shen
+Matrix Multiplication Project using Java Threads
+
+---------------------------------------------------
+
+Matrix.java has a main method with simple 2x2 matrices
+  to verify the implementation of matrix multiplication
+  with threads.
+
+The performance results are output after multiplyBy()
+  and multiplyByThreads() are run on the large matrices
+  (1000's of rows & columns)
+
+Performance Results (From testing):
+ - multiplyBy(): 28.921 seconds
+ - multiplyByThreads(): 3.477 seconds
+
+These results are valid for the logic of this program,
+  that running threads in parallel completes computation
+  in less time for larger processes
