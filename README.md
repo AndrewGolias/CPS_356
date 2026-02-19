@@ -10,3 +10,5 @@ Matrix class methods
 ### Runs processes based on specified algorithm to show CPU distribution of resources
 Algorithms:
 + First-Come-First-Serve - fcfs_scheduling(List P): orders processes by arrival time; runs process list and displays CPU idle time
++ Shortest Job First - sjf_scehduling(List P, mode): runs process list and display CPU idle time
+    + Non-preemptive mode=1: orders by shortest burst, reordering for processes in waiting queue after current process is finished running
