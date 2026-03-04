@@ -1,6 +1,8 @@
+package code.projects.cpu_scheduling_alg.src;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class CPU {
     int time=0;
@@ -29,7 +31,8 @@ public class CPU {
         int size = processes.size();
 
         switch(mode) {
-            case 0:         // non-preemtive
+            case 0 -> {
+                // non-preemtive
                 List<Process> executionOrder = new ArrayList<>();
                 while(completedProcesses < size) {
                     Process currShortestProcess = null;
@@ -56,9 +59,10 @@ public class CPU {
                 }
                 processes = executionOrder;
                 System.out.println("\tProcesses sorted by burst time (SJF): " + processes);
-                break;
+            }
 
-            case 1:     // preemtive
+            case 1 -> {
+                // preemtive
                 while(completedProcesses < size) {
                     Process currentProcess = null;
                     int minRemainingTime = Integer.MAX_VALUE;
@@ -85,7 +89,32 @@ public class CPU {
                     }
                     this.time++;
                 }
-                break;
+            }
+        }
+    }
+
+    public void multiFeedbackScheduling(List<Process> processes) {
+        int quantum = 8;
+        Process currProcess = null;
+        int currQueue = 0;
+        Queue<Process>[] queues = new Queue[3];
+        for(Process p : processes) {
+            queues[0].add(p);
+        }
+
+        while(currQueue < queues.length) {
+            quantum = quantum * (int)(Math.pow(2, currQueue));
+
+            int executeTime = Math.min(quantum, currProcess.getRemainingTime());
+            int startTime = this.time;
+            for(int i=0; i<executeTime; i++) {
+                currProcess.run(this.time);
+                this.time++;
+            }
+
+            if (currProcess.getRemainingTime() > 0) {
+
+            }
         }
     }
 

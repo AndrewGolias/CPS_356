@@ -1,3 +1,6 @@
+package code.projects.cpu_scheduling_alg.src;
+
+
 public class Process {
     int id;             // unique process identifier
     int arrTime;        // time arrived
