@@ -1,4 +1,4 @@
-package code.projects.cpu_scheduling_alg.src;
+package com.example;
 
 
 public class Process {
