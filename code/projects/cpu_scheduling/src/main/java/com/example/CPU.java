@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
@@ -94,28 +95,16 @@ public class CPU {
     }
 
     public void multiFeedbackScheduling(List<Process> processes) {
-        int quantum = 8;
+        final int quantumQ1 = 8;
+        final int quantumQ2 = 16;
         Process currProcess = null;
         int currQueue = 0;
         Queue<Process>[] queues = new Queue[3];
-        for(Process p : processes) {
-            queues[0].add(p);
-        }
+        queues[0] = new LinkedList<>();
+        queues[1] = new LinkedList<>();
+        queues[2] = new LinkedList<>();
 
-        while(currQueue < queues.length) {
-            quantum = quantum * (int)(Math.pow(2, currQueue));
-
-            int executeTime = Math.min(quantum, currProcess.getRemainingTime());
-            int startTime = this.time;
-            for(int i=0; i<executeTime; i++) {
-                currProcess.run(this.time);
-                this.time++;
-            }
-
-            if (currProcess.getRemainingTime() > 0) {
-
-            }
-        }
+        
     }
 
     public static void main(String[] args) {
@@ -149,8 +138,8 @@ public class CPU {
         // create CPU to execute process
         CPU cpu = new CPU();
         // cpu.fcfs_scheduling(processes);
-        cpu.sjf_scheduling(processes, 1);   // non-preemptive
-        //cpu.fcfs_scheduling(processes);
+        // cpu.sjf_scheduling(processes, 1);   // non-preemptive
+        cpu.multiFeedbackScheduling(processes);
         System.out.println();
     }
 }

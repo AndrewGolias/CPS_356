@@ -28,6 +28,8 @@ public class Process {
 
     public boolean isFinished() { return finished; }
 
+    public boolean hasArrived(int time) { return this.arrTime <= time; }
+
     public void setWaitingTime(int waitingTime) {
         this.waitingTime = waitingTime;
     }
