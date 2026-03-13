@@ -3,19 +3,19 @@ package com.example;
 class Process implements Runnable {
     
     int id;             // process id number
-    int turn;           // turn indicator
-    boolean[] flag;     // turn flag
+    volatile int turn;           // turn indicator
+    volatile boolean[] flag;     // turn flag
 
     public Process(int id) {
         this.id = id;
         this.flag = new boolean[10];
-        this.turn = id+1;
+        this.turn = 1 - this.id;
     }
 
     public void enterCS() {
         this.flag[id] = true;
-        this.turn = id+1;
-        while(this.flag[id+1] && this.turn == this.id+1) {}
+        this.turn = 1 - id;
+        while(this.flag[1 - this.id] && this.turn == 1 - this.id) {}
     }
 
     public void exitCS() {
