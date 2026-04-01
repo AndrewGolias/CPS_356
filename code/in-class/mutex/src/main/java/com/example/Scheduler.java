@@ -1,6 +1,11 @@
 package com.example;
 
 public class Scheduler {
+
+    /**
+     * Algorithm for bounded buffer problem
+     * Producers and consumers add and remove data from a shared buffer and display output to track its contents
+     */
     public static void main(String[] args) {
         // Producer threads
         Thread Pa = new Thread(new Producer('a'));

@@ -21,7 +21,7 @@ public class Producer implements Runnable {
                 SharedBuffer.buffer[SharedBuffer.in] = item;
 
                 // display console output
-                System.out.printf("Producer %c added %d at location %d\n", this.id, item, SharedBuffer.in);
+                System.out.printf("Producer %c added %d at location [%d]\n", this.id, item, SharedBuffer.in);
 
                 // update the in location
                 SharedBuffer.in = (SharedBuffer.in + 1) % SharedBuffer.SIZE;
